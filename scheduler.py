@@ -2,6 +2,10 @@ from flask import Flask, render_template, request, redirect
 import datetime
 from flask_apscheduler import APScheduler
 
+#for interval trigger
+#from apscheduler.triggers.interval import IntervalTrigger
+
+
 import sqlite3
 
 app = Flask(__name__)
@@ -42,3 +46,16 @@ def delete(title):
 
 if __name__== "__main__":
     app.run(debug=True)
+
+
+
+
+# for interval trigger
+
+#interval = IntervalTrigger(
+#days = 1, # executed once a day
+#start_date='2021-02-22 17:00:00',
+#end_date='2021-02-27 18:54:00',
+#timezone='Asia/Kolkata')
+
+#scheduler.add_job(func=delete,args=[title],run_date='mon-fri', trigger=interval,id='title')
