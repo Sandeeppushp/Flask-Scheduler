@@ -59,3 +59,4 @@ if __name__== "__main__":
 #timezone='Asia/Kolkata')
 
 #scheduler.add_job(func=delete,args=[title],run_date='mon-fri', trigger=interval,id='title')
+#scheduler.start()
