@@ -32,7 +32,7 @@ def posts(title):
     conn = sqlite3.connect('database.db')
     conn.execute("INSERT INTO tableee(title,datetime) values(?,?)" ,(title,datetime.datetime.now()))
     conn.commit()
-    scheduler = APScheduler()
+    
     scheduler.add_job(func=delete,args=[title],run_date=datetime.datetime.now()+datetime.timedelta(0,5),id='title')
     scheduler.start()
     return 'inserted '+title
@@ -52,11 +52,12 @@ if __name__== "__main__":
 
 # for interval trigger
 
-#interval = IntervalTrigger(
-#days = 1, # executed once a day
-#start_date='2021-02-22 17:00:00',
-#end_date='2021-02-27 18:54:00',
-#timezone='Asia/Kolkata')
+interval = IntervalTrigger(
+days = 1, # executed once a day
+start_date='2021-02-22 17:00:00',
+end_date='2021-02-27 18:54:00',
+timezone='Asia/Kolkata')
 
-#scheduler.add_job(func=delete,args=[title],run_date='mon-fri', trigger=interval,id='title')
-#scheduler.start()
+scheduler = APScheduler()
+scheduler.add_job(func=delete,args=[title],run_date='mon-fri', trigger=interval,id='title')
+scheduler.start()
