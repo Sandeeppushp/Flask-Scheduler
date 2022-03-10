@@ -32,6 +32,8 @@ def posts(title):
     conn = sqlite3.connect('database.db')
     conn.execute("INSERT INTO tableee(title,datetime) values(?,?)" ,(title,datetime.datetime.now()))
     conn.commit()
+
+    #datetime.timedelta(0,5)  ==  5 seconds
     
     scheduler.add_job(func=delete,args=[title],run_date=datetime.datetime.now()+datetime.timedelta(0,5),id='title')
     scheduler.start()
